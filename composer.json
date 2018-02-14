@@ -1,0 +1,40 @@
+{
+    "name": "loevgaard/dandomain-consignment-entities",
+    "type": "hostnet-entity",
+    "license": "MIT",
+    "require": {
+        "php": "~7.1",
+        "doctrine/orm": "^2.5",
+        "hostnet/entity-plugin-lib": "^2.1",
+        "knplabs/doctrine-behaviors": "^1.5",
+        "loevgaard/dandomain-foundation-entities": "dev-master",
+        "loevgaard/dandomain-stock-entities": "dev-master"
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^2.0",
+        "phpunit/phpunit" : "~5.5||~6.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Loevgaard\\DandomainConsignment\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Loevgaard\\DandomainConsignment\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "phpunit",
+        "check-style": "./vendor/bin/php-cs-fixer fix --verbose --dry-run",
+        "fix-style": "./vendor/bin/php-cs-fixer fix --verbose"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    }
+}
