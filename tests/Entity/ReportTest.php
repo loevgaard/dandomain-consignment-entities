@@ -18,11 +18,14 @@ class ReportTest extends TestCase
             new StockMovement()
         ]);
 
+        $file = new \SplFileInfo('test');
+
         $report = new Report();
         $report->setId(1)
             ->setStatus(Report::STATUS_SUCCESSFUL)
             ->setManufacturer($manufacturer)
             ->setError('error')
+            ->setFile($file)
             ->setStockMovements($stockMovements)
         ;
 
@@ -32,6 +35,7 @@ class ReportTest extends TestCase
         $this->assertSame(Report::STATUS_SUCCESSFUL, $report->getStatus());
         $this->assertSame($manufacturer, $report->getManufacturer());
         $this->assertSame('error', $report->getError());
+        $this->assertEquals($file, $report->getFile());
         $this->assertEquals($stockMovements, $report->getStockMovements());
     }
 

@@ -65,6 +65,13 @@ class Report implements ReportInterface
     protected $error;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(type="string", length=191, nullable=true)
+     */
+    protected $file;
+
+    /**
      * @var StockMovementInterface[]|ArrayCollection
      *
      * @ORM\ManyToMany(targetEntity="Loevgaard\DandomainStock\Entity\StockMovement")
@@ -125,6 +132,7 @@ class Report implements ReportInterface
         Assert::that($this->manufacturer)->isInstanceOf(ManufacturerInterface::class);
         Assert::that($this->status)->choice(self::getStatuses());
         Assert::thatNullOr($this->error)->string();
+        Assert::thatNullOr($this->file)->string()->maxLength(191);
         Assert::thatAll($this->stockMovements->toArray())->isInstanceOf(StockMovementInterface::class);
     }
 
@@ -256,6 +264,28 @@ class Report implements ReportInterface
     public function setError(?string $error) : ReportInterface
     {
         $this->error = $error;
+        return $this;
+    }
+
+    /**
+     * @return \SplFileInfo
+     */
+    public function getFile(): ?\SplFileInfo
+    {
+        if(!$this->file) {
+            return null;
+        }
+
+        return new \SplFileInfo($this->file);
+    }
+
+    /**
+     * @param \SplFileInfo $file
+     * @return Report
+     */
+    public function setFile(\SplFileInfo $file)
+    {
+        $this->file = $file->getPathname();
         return $this;
     }
 
