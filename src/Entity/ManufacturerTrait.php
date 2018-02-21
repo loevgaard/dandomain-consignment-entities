@@ -15,13 +15,6 @@ trait ManufacturerTrait
     protected $consignment = false;
 
     /**
-     * @var string|null
-     *
-     * @ORM\Column(type="string", nullable=true, length=191)
-     */
-    protected $consignmentClass;
-
-    /**
      * This is the last stock movement used in reports
      * This implies that stock movements can't be changed
      *
@@ -46,24 +39,6 @@ trait ManufacturerTrait
     public function setConsignment(bool $consignment)
     {
         $this->consignment = $consignment;
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getConsignmentClass(): ?string
-    {
-        return $this->consignmentClass;
-    }
-
-    /**
-     * @param string|null $consignmentClass
-     * @return ManufacturerTrait
-     */
-    public function setConsignmentClass(?string $consignmentClass)
-    {
-        $this->consignmentClass = $consignmentClass;
         return $this;
     }
 
