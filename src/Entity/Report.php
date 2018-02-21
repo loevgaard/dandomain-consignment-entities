@@ -185,7 +185,7 @@ class Report implements ReportInterface
                 $total = new Money(0, new Currency($stockMovement->getCurrency()));
             }
 
-            $total = $total->add($stockMovement->getTotalPrice()->multiply($stockMovement->getQuantity()));
+            $total = $total->add($stockMovement->getPrice()->multiply($stockMovement->getQuantity()));
         }
 
         if (!$total) {
